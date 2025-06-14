@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planilha de Rotas - Controle de Valores</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- LOGO ESTILIZADA -->
+      <div class="logo-container">
+        <div class="logo-css">
+          <div class="logo-circle">
+            <div class="wheat-icon">🌾</div>
+          </div>
+          <div class="logo-text">
+            <div class="brand-name">De Paulo</div>
+            <div class="brand-subtitle">PÃES</div>
+          </div>
+        </div>
+      </div>
+
+      <h1>📊 Controle de Valores por Rota</h1>
+
+      <div class="table-container">
+        <table id="rotasTable">
+          <thead>
+            <tr>
+              <th>Rota</th>
+              <th>Valor (R$)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Zona Sul (Mercado)</td>
+              <td>
+                <input
+                  type="text"
+                  id="zonasul_mercado"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Pix</td>
+              <td>
+                <input
+                  type="text"
+                  id="pix"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Zona Sul</td>
+              <td>
+                <input
+                  type="text"
+                  id="zonasul"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Metropolitana</td>
+              <td>
+                <input
+                  type="text"
+                  id="metropolitana"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Serrana</td>
+              <td>
+                <input
+                  type="text"
+                  id="serrana"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Zona Oeste</td>
+              <td>
+                <input
+                  type="text"
+                  id="zonaoeste"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Médio Paraíba</td>
+              <td>
+                <input
+                  type="text"
+                  id="medioparaiba"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Norte Fluminense</td>
+              <td>
+                <input
+                  type="text"
+                  id="nortefluminense"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Região dos Lagos</td>
+              <td>
+                <input
+                  type="text"
+                  id="regiaodoslagos"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Baixada</td>
+              <td>
+                <input
+                  type="text"
+                  id="baixada"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Minas Gerais</td>
+              <td>
+                <input
+                  type="text"
+                  id="minasgerais"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Costa Verde</td>
+              <td>
+                <input
+                  type="text"
+                  id="costaverde"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Centro Sul</td>
+              <td>
+                <input
+                  type="text"
+                  id="centrosul"
+                  placeholder="0,00"
+                  oninput="formatarMoeda(this)"
+                  onblur="calcularTotal()"
+                />
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <td><strong>TOTAL GERAL</strong></td>
+              <td>
+                <strong>R$ <span id="totalGeral">0,00</span></strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="buttons">
+        <button class="btn" onclick="limparTodos()">🗑️ Limpar Todos</button>
+        <button class="btn btn-secondary" onclick="exportarCSV()">
+          📥 Exportar CSV
+        </button>
+        <button class="btn btn-secondary" onclick="gerarResumo()">
+          📋 Gerar Resumo
+        </button>
+      </div>
+
+      <div class="export-info">
+        <h3>ℹ️ Como usar:</h3>
+        <ul>
+          <li>Digite os valores em cada campo correspondente à rota</li>
+          <li>O total será calculado automaticamente conforme você digita</li>
+          <li>Use o botão <b>"Limpar Todos"</b> para zerar todos os campos</li>
+          <li>
+            Use <b>"Exportar CSV"</b> para baixar os dados em formato
+            Excel/planilha
+          </li>
+          <li>Use <b>"Gerar Resumo"</b> para ver um relatório detalhado</li>
+        </ul>
+      </div>
+
+      <div
+        id="resumo"
+        style="
+          display: none;
+          margin-top: 20px;
+          background-color: #e8f6f3;
+          padding: 15px;
+          border-radius: 5px;
+        "
+      >
+        <h3>📊 Resumo Detalhado</h3>
+        <div id="resumoContent"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
